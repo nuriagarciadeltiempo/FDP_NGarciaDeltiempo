@@ -29,8 +29,8 @@ gene2disease = {}
 for gene in gene_GP_list:
     for Gene in OMIM_file['Gene']:
         if gene == Gene:
-            # add to the dictionary as a key the gene symbol and as value the associated disease
-            gene2disease[gene] = OMIM_file['Associated Disease'][OMIM_file['Gene'] == Gene].values
+           # add to the dictionary as a key the gene symbol and as value the associated disease and if it is recessive or dominant.
+            gene2disease[gene] = OMIM_file.loc[OMIM_file['Gene'] == gene, 'Associated Disease'].values[0] + ' ' + OMIM_file.loc[OMIM_file['Gene'] == gene, 'Recessive/Dominant'].values[0]
         else:
             continue
         
